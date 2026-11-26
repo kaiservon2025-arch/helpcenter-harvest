@@ -1,0 +1,123 @@
+{
+  "_comment": "Copy to <workdir>/harvest.config.json and edit. This example is the NOON seller help center (helpcenter.noon.partners), crawled 2026-11-25.",
+
+  "site": "noon",
+  "base": "https://helpcenter.noon.partners",
+  "locale": "en",
+  "start_url": "https://helpcenter.noon.partners/en?project=PRJ580249",
+  "article_url": "{base}/{locale}/category/{category_slug}/{slug}",
+
+  "headers": {
+    "Origin": "{base}",
+    "Referer": "{base}/{locale}"
+  },
+
+  "endpoints": {
+    "groups": {
+      "path": "/api/category-group/list",
+      "body": { "locale": "{locale}", "per_page": 100 },
+      "key": "groups",
+      "map": {
+        "id_category_group": "id_category_group",
+        "name": "name",
+        "description": "description",
+        "sort_order": "sort_order"
+      }
+    },
+    "categories": {
+      "path": "/api/category/list",
+      "body": { "locale": "{locale}" },
+      "key": "categories",
+      "map": {
+        "id_category": "id_category",
+        "id_category_group": "id_category_group",
+        "name": "name",
+        "slug": "slug",
+        "description": "description",
+        "sort_order": "sort_order"
+      }
+    },
+    "stages": {
+      "path": "/api/stage/list",
+      "body": { "locale": "{locale}", "per_page": 200, "id_category": "{category_id}" },
+      "key": "stages",
+      "paginated": true,
+      "map": {
+        "id_journey_stage": "id_journey_stage",
+        "id_category": "id_category",
+        "name": "name",
+        "description": "description",
+        "sort_order": "sort_order"
+      }
+    },
+    "articles": {
+      "path": "/api/article/list",
+      "body": {
+        "id_category": "{category_id}",
+        "locale": "{locale}",
+        "per_page": 100,
+        "page": "{page}",
+        "order_by_sort": true
+      },
+      "key": "articles",
+      "paginated": true,
+      "map": {
+        "id_article": "id_article",
+        "id_journey_stage": "id_journey_stage",
+        "slug": "slug",
+        "title": "title",
+        "content": "content",
+        "read_minutes": "read_minutes",
+        "url": "url",
+        "sort_order": "sort_order"
+      }
+    }
+  },
+
+  "pagination": {
+    "max_pages": 200,
+    "sleep": 0.2
+  },
+
+  "images": {
+    "referer": "https://helpcenter.noon.partners/",
+    "max_width": 1100,
+    "quality": 86,
+    "workers": 12
+  },
+
+  "translate": {
+    "budget": 12000,
+    "min_length_ratio": 0.16,
+    "whitelist": [
+      "noon", "seller", "lab", "sku", "fbn", "fbp", "asn", "po", "rtv", "grn",
+      "cod", "vat", "trn", "cr", "zatca", "iqama", "emirates", "id", "delivery",
+      "express", "supermall", "ads", "buy", "box", "catalog", "listing", "bundle",
+      "payment", "invoice", "warranty", "eta", "hs", "dha", "gdpr", "api",
+      "excel", "csv", "pdf", "app", "ios", "android"
+    ]
+  },
+
+  "docs": {
+    "brand": "noon",
+    "cover_title": "noon 卖家学习中心",
+    "cover_subtitle": "中文培训手册 · 全站资料整理",
+    "subtitle": "Seller Help Center 全站中文版",
+    "header": "noon 卖家学习中心 · 中文培训手册",
+    "out_name": "noon卖家学习中心_中文培训手册.docx",
+    "translation_note": "机器翻译 + 术语统一（保留 noon / SKU / FBN / FBP 等原始术语）",
+    "scope_fmt": "{groups} 大板块 / {cats} 个分类 / {stages} 个学习阶段 / {articles} 篇培训文章",
+    "intro": [
+      ["这是什么",
+       "本手册把 noon 卖家帮助中心（Seller Help Center）英文站的全部培训资料逐篇翻译成中文，按「板块 → 分类 → 阶段 → 文章」四级结构重新编排，原文中的截图、表格、提示框一并保留，便于团队内部培训、查阅与二次编辑。"],
+      ["怎么用",
+       "先用目录定位到分类与阶段；每篇文章开头标注原文链接，点开可核对最新英文原文。所有 noon 后台的菜单名、按钮名保留英文，便于与线上界面一一对应。"],
+      ["内容口径",
+       "正文为原文完整翻译，不删减、不改写；编号、金额、百分比、编码、链接均按原文保留。"],
+      ["时效提醒",
+       "资料抓取日期：{date}。noon 平台规则变动频繁，涉及费率、政策、时效的条款，执行前请以 Seller Lab 后台与官方公告为准。"],
+      ["未覆盖内容",
+       "① 站内交互式计算器（运费/佣金试算）不产生静态文档，未收录；② 少数以视频为主的内容仅保留视频外链；③ 阿拉伯语站点内容与英文站一致，未重复收录。"]
+    ]
+  }
+}

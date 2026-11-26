@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Harvest working data (never commit)
+data/
+images/
+out/
+harvest.config.json
+
+# Office output
+*.docx
+*.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
