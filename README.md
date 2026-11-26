@@ -45,10 +45,10 @@ recon          harvest          build_blocks        segments        成书
 
 ```powershell
 # 全局：所有工作区可用
-git clone https://github.com/<you>/helpcenter-harvest "$env:USERPROFILE\.dsh\skills\helpcenter-harvest"
+git clone https://github.com/kaiservon2025-arch/helpcenter-harvest "$env:USERPROFILE\.dsh\skills\helpcenter-harvest"
 
 # 或者只给某个项目用
-git clone https://github.com/<you>/helpcenter-harvest "<项目>\.dsh\skills\helpcenter-harvest"
+git clone https://github.com/kaiservon2025-arch/helpcenter-harvest "<项目>\.dsh\skills\helpcenter-harvest"
 ```
 
 重启 DSH 后，技能目录里会出现 `helpcenter-harvest`；你也可以直接说「把这个帮助中心做成中文手册」，模型会自己加载它。
